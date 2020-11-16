@@ -31,6 +31,7 @@ class Snake:
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
         self.direction = Vector2(1, 0)
         self.new_block = False
+        self.sound = pygame.mixer.Sound(os.path.join(sound_dir, 'crunch.wav'))
 
         self.head_up = pygame.image.load(os.path.join(
             image_dir, 'head_up.png')).convert_alpha()
@@ -127,6 +128,9 @@ class Snake:
     def add_block(self):
         self.new_block = True
 
+    def play_sound(self):
+        self.sound.play()
+
 
 class Main:
     def __init__(self):
@@ -180,6 +184,7 @@ class Main:
         if self.fruit.position == self.snake.body[0]:
             self.fruit.randomize()
             self.snake.add_block()
+            self.snake.play_sound()
 
     def check_fail(self):
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:

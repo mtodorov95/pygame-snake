@@ -1,7 +1,13 @@
 import pygame
 import sys
+import os
 import random
 from pygame.math import Vector2
+
+base_dir = os.getcwd()
+game_dir = os.path.join(base_dir, 'game')
+assets_dir = os.path.join(game_dir, 'images')
+sound_dir = os.path.join(game_dir, 'sound')
 
 
 class Fruit:

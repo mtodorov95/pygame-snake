@@ -29,7 +29,7 @@ class Fruit:
 class Snake:
     def __init__(self):
         self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
-        self.direction = Vector2(1, 0)
+        self.direction = Vector2(0, 0)
         self.new_block = False
         self.sound = pygame.mixer.Sound(os.path.join(sound_dir, 'crunch.wav'))
 
@@ -131,6 +131,10 @@ class Snake:
     def play_sound(self):
         self.sound.play()
 
+    def reset(self):
+        self.body = [Vector2(5, 10), Vector2(4, 10), Vector2(3, 10)]
+        self.direction = Vector2(0, 0)
+
 
 class Main:
     def __init__(self):
@@ -197,8 +201,7 @@ class Main:
                 self.game_over()
 
     def game_over(self):
-        pygame.quit()
-        sys.exit()
+        self.snake.reset()
 
 
 pygame.init()
